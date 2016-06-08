@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+		var recognition = new webkitSpeechRecognition();
+		recognition.continuous = true;
+		recognition.interimResults = true;
+		var woerter = ['zurücksetzen','system','test','bearbeiten'];
+
+		recognition.start();
+
+		recognition.onstart = function() { console.log('start')}
+		recognition.onerror = function(event) {console.log(event) }
+		recognition.onresult = function(event) {
+			var wort = event.results[0][0].transcript.toLowerCase();
+			for (var i = event.resultIndex; i < event.results.length; ++i) {
+				if(event.results[i].isFinal){
+					var index = woerter.indexOf(wort);
+					if(index > -1){
+						sendWort(wort,index);
+					}
+				}
+			}
+
+			recognition.stop();
+		}
+		recognition.onend = function() {
+			console.log('ende!')
+			recognition.start();
+		}
+
+		function sendWort(wort,index){
+			$('div').append('<p>' + wort + '</p>');
+			$.ajax({
+				url: '/' + index,
+				type: 'POST',
+				data: {data : wort},
+			})
+			.done(function() {
+				console.log("success");
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+
+		}
+
+	});
+</script>
+
+</body>
+</html>
