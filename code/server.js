@@ -13,8 +13,7 @@ var states = JSON.parse(fs.readFileSync('./states.json', 'utf8'));
 
 function servo(states) {
 	for (var i = 0; i < states.length; i++) {
-		var com = "pwm-exp "+ states[i][1] +" " + states[i][2].map(0,180,2.75,12.75) + " 50";
-		exec(com, function(error, stdout, stderr) { if(error !== null)console.log("exec error"+error);});
+		exec("pwm-exp "+ states[i][1] +" " + states[i][2].map(0,180,2.75,12.75) + " 50", function(error, stdout, stderr) { if(error !== null)console.log("exec error"+error);});
 	}
 }
 

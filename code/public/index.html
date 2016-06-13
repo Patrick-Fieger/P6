@@ -2,18 +2,45 @@
 <html>
 <head>
 	<title></title>
+
+	<style type="text/css">
+		.red{
+			float: left;
+			width: 50px;
+			height: 50px;
+			background-color: #ccc;
+		}
+
+		.red.active{
+			background-color: red;
+		}
+
+	</style>
+
 </head>
 <body>
+<ul>
+	<li><a href="#" title="">Pos 1</a></li>
+	<li><a href="#" title="">Pos 2</a></li>
+	<li><a href="#" title="">Pos 3</a></li>
+	<li><a href="#" title="">Pos 4</a></li>
+</ul>
 
+<span class="red"></span>
+<p>Mägliche Wörter sind</p>
 <div></div>
 
+<!-- <script src="/jquery.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
 		var recognition = new webkitSpeechRecognition();
 		recognition.continuous = true;
 		recognition.interimResults = true;
-		var woerter = ['zurücksetzen','system','test','bearbeiten'];
+		var woerter = ['zurück','rot','grün','tisch'];
+		var system_said = false;
+
+		$('p').append(' ' + woerter.toString());
 
 		recognition.start();
 
@@ -24,8 +51,16 @@
 			for (var i = event.resultIndex; i < event.results.length; ++i) {
 				if(event.results[i].isFinal){
 					var index = woerter.indexOf(wort);
-					if(index > -1){
-						sendWort(wort,index);
+
+					if(!system_said && wort == "system"){
+						system_said = !system_said;
+						$('.red').addClass('active');
+					}else if(system_said && wort !== "system"){
+						if(index > -1){
+							system_said = !system_said;
+							$('.red').removeClass('active');
+							sendWort(wort,index);
+						}
 					}
 				}
 			}
@@ -37,23 +72,21 @@
 			recognition.start();
 		}
 
+		$(document).on('click', 'a', function(event) {
+			event.preventDefault();
+			sendWort($(this).text(),$(this).closest('li').index())
+		});
+
 		function sendWort(wort,index){
 			$('div').append('<p>' + wort + '</p>');
 			$.ajax({
-				url: '/' + index,
+				url: "https://arduino.local/arduino/" + index,
 				type: 'POST',
 				data: {data : wort},
-			})
-			.done(function() {
-				console.log("success");
-			})
-			.fail(function() {
-				console.log("error");
-			})
-			.always(function() {
-				console.log("complete");
+				succcess : function(data){
+					console.log(data);
+				}
 			});
-
 		}
 
 	});
