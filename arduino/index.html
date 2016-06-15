@@ -5,15 +5,40 @@
 	<meta charset="UTF-8">
 
 	<style type="text/css">
+		body,html{
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%
+		}
+
+		*{
+			float: left;
+			clear: both;
+		}
+
+		ul{
+			margin: 20px;
+			padding: 0;
+		}
+
+		li{
+			list-style: none;
+		}
+
 		.red{
 			float: left;
-			width: 50px;
+			width: 100%;
 			height: 50px;
 			background-color: #ccc;
 		}
 
 		.red.active{
 			background-color: red;
+		}
+
+		p{
+			margin-bottom: 5px;
 		}
 
 	</style>
@@ -28,17 +53,16 @@
 </ul>
 
 <span class="red"></span>
-<p>Mögliche Wörter sind</p>
+<p>Mögliche Wörter sind:</p>
 <div></div>
 
-<!-- <script src="/jquery.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
 		var recognition = new webkitSpeechRecognition();
 		recognition.continuous = true;
 		recognition.interimResults = true;
-		var woerter = ['zurück','rot','grün','tisch'];
+		var woerter = ['bearbeiten','schlafen','sitzen','tisch'];
 		var system_said = false;
 
 		$('p').append(' ' + woerter.toString());
