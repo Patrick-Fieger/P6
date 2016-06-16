@@ -1,0 +1,124 @@
+nav{
+	display: none;
+}
+
+.border{
+	background-color: #efddce;
+	position: fixed;
+	z-index: 10000;
+}
+
+.border:nth-child(1),
+.border:nth-child(2){
+	height: 100%;
+	width: 30px;
+	top: 0;
+}
+
+.border:nth-child(2){
+	right: 0;
+}
+
+.border:nth-child(3),
+.border:nth-child(4){
+	width: 100%;
+	height: 20px;
+	left: 0;
+}
+
+.border:nth-child(4){
+	bottom: 0;
+}
+
+canvas {
+    opacity: 0.3
+}
+
+header{
+	margin-bottom: 5em;
+	position: relative;
+}
+
+header img {
+    position: absolute;
+    z-index: 10000;
+    top: 50%;
+    left: 50%;
+    margin: -250px 0 0 -250px;
+}
+
+header a{
+	position: absolute;
+	bottom: 30px;
+	left: 50%;
+	font-size: 50px;
+	margin-left: -25px;
+	-webkit-animation: updown 2s infinite; /* Safari 4+ */
+  	-moz-animation:    updown 2s infinite; /* Fx 5+ */
+  	-o-animation:      updown 2s infinite; /* Opera 12+ */
+  	animation:         updown 2s infinite;
+}
+
+@-webkit-keyframes updown {
+  0%   { bottom: 30px; }
+  50%   { bottom: 50px; }
+  100% { bottom: 30px; }
+}
+@-moz-keyframes updown {
+  0%   { bottom: 30px; }
+  50%   { bottom: 50px; }
+  100% { bottom: 30px; }
+}
+@-o-keyframes updown {
+  0%   { bottom: 30px; }
+  50%   { bottom: 50px; }
+  100% { bottom: 30px; }
+}
+@keyframes updown {
+  0%   { bottom: 30px; }
+  50%   { bottom: 50px; }
+  100% { bottom: 30px; }
+}
+
+section#inhalt{
+	height: 100vh;
+}
+
+section{
+	margin-bottom: 200px;
+}
+
+section h1{
+	font-size: 4em;
+	margin-bottom: 2em;
+	position: relative;
+	text-transform: uppercase;
+}
+
+section h1:after{
+	content: "";
+	position: absolute;
+	width: 5em;
+	height: 1px;
+	background-color: #ccc;
+	left: 20px;
+	top: 60px;
+}
+
+section .text{
+	-webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    -webkit-column-gap: 3em;
+    -moz-column-gap: 3em;
+    column-gap: 3em;
+    -webkit-column-rule-style: solid;
+    -moz-column-rule-style: solid;
+    column-rule-style: solid;
+    -webkit-column-rule-color: #ccc;
+    -moz-column-rule-color: #ccc;
+    column-rule-color: #ccc;
+    -webkit-column-rule-width: 1px;
+    -moz-column-rule-width: 1px;
+    column-rule-width: 1px;
+}

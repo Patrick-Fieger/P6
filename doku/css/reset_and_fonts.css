@@ -1,0 +1,212 @@
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,video{display:inline-block}audio:not([controls]){display:none;height:0}[hidden]{display:none}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}a:active,a:hover{outline:0}h1{font-size:2em;margin:0.67em 0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}dfn{font-style:italic}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}mark{background:#ff0;color:#000}code,kbd,pre,samp{font-family:monospace,serif;font-size:1em}pre{white-space:pre-wrap}q{quotes:"\201C" "\201D" "\2018" "\2019"}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-0.5em}sub{bottom:-0.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:0}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em}legend{border:0;padding:0}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}button,input{line-height:normal}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}textarea{overflow:auto;vertical-align:top}table{border-collapse:collapse;border-spacing:0}
+
+
+@font-face {
+    font-family: 'SourceSansPro';
+    src: url('/fonts/SourceSansPro-Regular.eot');
+    src: local('☺'), url('/fonts/SourceSansPro-Regular.ttf.woff') format('woff'), url('/fonts/SourceSansPro-Regular.ttf') format('truetype'), url('/fonts/SourceSansPro-Regular.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+html{
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font: 16px/20px 'SourceSansPro', sans-serif;
+    color: #000000;
+    background: #fff;
+    padding-bottom: 100px;
+}
+
+.row{
+    width: 82%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/*-- our cleafix hack -- */
+.row:before,
+.row:after {
+    content:"";
+    display: table ;
+    clear:both;
+}
+
+[class*='col-'] {
+    float: left;
+    min-height: 1px;
+    width: 16.66%;
+    /*padding: 12px 0;*/
+
+}
+
+.col-1{ width: 16.66%; }
+.col-2{ width: 33.33%; }
+.col-3{ width: 50%;    }
+.col-4{ width: 66.66%; }
+.col-5{ width: 83.33%; }
+.col-6{ width: 100%;   }
+
+
+li{
+    background: url(/img/achteck.png) no-repeat 0px 0px transparent;
+    list-style-type: none;
+    margin: 0;
+    padding: 0px 0px 1px 24px;
+    vertical-align: middle;
+    background-size: contain;
+    margin-bottom: 10px;
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+p{
+    font-size: 1.2em;
+    line-height: 1.6em;
+    margin-top: 0;
+}
+
+@font-face {
+    font-family: 'doku';
+    src:    url('/fonts/doku.eot?s99odt');
+    src:    url('/fonts/doku.eot?s99odt#iefix') format('embedded-opentype'),
+        url('/fonts/doku.ttf?s99odt') format('truetype'),
+        url('/fonts/doku.woff?s99odt') format('woff'),
+        url('/fonts/doku.svg?s99odt#doku') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'doku' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-chevron-thin-down:before {
+    content: "\e900";
+}
+.icon-chevron-thin-left:before {
+    content: "\e901";
+}
+.icon-chevron-thin-right:before {
+    content: "\e902";
+}
+.icon-chevron-thin-up:before {
+    content: "\e903";
+}
+.icon-cloud:before {
+    content: "\e904";
+}
+.icon-dots-three-horizontal:before {
+    content: "\e905";
+}
+.icon-dots-three-vertical:before {
+    content: "\e906";
+}
+.icon-resize-100:before {
+    content: "\e907";
+}
+.icon-resize-full-screen:before {
+    content: "\e909";
+}
+.icon-trash:before {
+    content: "\e908";
+}
+.icon-align-bottom:before {
+    content: "\e90b";
+}
+.icon-align-horizontal-middle:before {
+    content: "\e90c";
+}
+.icon-align-left:before {
+    content: "\e90d";
+}
+.icon-align-right:before {
+    content: "\e90e";
+}
+.icon-align-top:before {
+    content: "\e90f";
+}
+.icon-align-vertical-middle:before {
+    content: "\e910";
+}
+.icon-check:before {
+    content: "\e90a";
+}
+.icon-export:before {
+    content: "\e911";
+}
+.icon-globe:before {
+    content: "\e916";
+}
+.icon-heart-outlined:before {
+    content: "\e917";
+}
+.icon-heart:before {
+    content: "\e918";
+}
+.icon-images:before {
+    content: "\e912";
+}
+.icon-info:before {
+    content: "\e919";
+}
+.icon-location-pin:before {
+    content: "\e91a";
+}
+.icon-location:before {
+    content: "\e91b";
+}
+.icon-lock-open:before {
+    content: "\e91c";
+}
+.icon-lock:before {
+    content: "\e91d";
+}
+.icon-new:before {
+    content: "\e91f";
+}
+.icon-paper-plane:before {
+    content: "\e922";
+}
+.icon-reply:before {
+    content: "\e925";
+}
+.icon-user:before {
+    content: "\e92c";
+}
+.icon-facebook:before {
+    content: "\e92d";
+}
+.icon-google:before {
+    content: "\e92e";
+}
+.icon-instagram:before {
+    content: "\e92f";
+}
+.icon-twitter:before {
+    content: "\e932";
+}
+.icon-youtube:before {
+    content: "\e913";
+}
+
