@@ -4,6 +4,9 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 
 *{
     box-sizing: border-box;
+}
+
+.trenner{
     -webkit-transform: translate3d(0,0,0);
     -moz-transform: translate3d(0,0,0);
     -ms-transform: translate3d(0,0,0);

@@ -19,21 +19,22 @@ $(document).ready(function() {
 		if(devmode) console.log(string);
 	}
 
-	function a(){
-		if(devmode) alert('bg')
+	function a(string){
+		if(devmode) alert(string);
 	}
 
 	function init(){
 		initBGs();
-		//initVoice();
-		initScrollPositions();
+		initVoice();
+		setTimeout(function() { initScrollPositions(); }, 300);
+
 		initMenu();
 		$('canvas').constellation({});
 	}
 
 	function initBGs(){
 		$('[data-bg]').each(function(index, el) {
-			c($(this).data('bg'))
+			c($(this).data('bg'));
 			$(this).css({'background-image':'url(' + $(this).data('bg') + ')'});
 			$(this).append('<div class="icon-resize-full-screen show_preview"></div>')
 		});
@@ -76,7 +77,7 @@ $(document).ready(function() {
 		recognition.interimResults = true;
 		var woerter = [
 			['inhalt','#inhalt'],
-			['udomi','#udomi'],
+			['über uns','#us'],
 			['management','#management'],
 			['space','#space']
 		];
@@ -92,7 +93,7 @@ $(document).ready(function() {
 					for (var k = 0; k < woerter.length; k++) {
 						var index = woerter[k][0].indexOf(wort);
 
-						if(wort == "weiter" || wort == "walter"){
+						if(wort == "weiter" || wort == "walter" || wort == "weißer"){
 							$('html,body').animate({scrollTop : scroll_positions[actual_index+1].offset + 2}, scroll_speed);
 						}else if(wort == "zurück"){
 							if(actual_index == 0){
