@@ -1,18 +1,17 @@
-.preview,
-nav .menu a{
+.preview{
   -webkit-transition: all 1s;
   -moz-transition: all 1s;
   -o-transition: all 1s;
   transition: all 1s;
 }
 
-nav .menu a{
+/*nav .menu a{
     -webkit-transform: translate3d(0,0,0);
   -moz-transform: translate3d(0,0,0);
   -ms-transform: translate3d(0,0,0);
   -o-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
-}
+}*/
 
 /*nav{
 	display: none;
@@ -25,7 +24,7 @@ nav .menu a{
 .border{
 	background-color: #efddce;
 	position: fixed;
-	z-index: 10000;
+	z-index: 100;
 }
 
 .border:nth-child(1),
@@ -115,6 +114,7 @@ section h1{
 	margin-bottom: 2em;
 	position: relative;
   line-height: 70px;
+  letter-spacing: 5px;
 	/*text-transform: uppercase;*/
 }
 
@@ -222,6 +222,7 @@ nav.sticky{
 
 nav .menu a{
   font-size: 18px;
+  text-decoration: none !important;
 }
 
 nav .menu a:hover,
@@ -233,4 +234,8 @@ nav .menu a.active{
 nav .menu h2{
   margin-bottom: 5px;
   margin-top: 0;
+}
+
+.text a{
+  font-style: normal !important;
 }

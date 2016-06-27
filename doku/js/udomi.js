@@ -26,6 +26,7 @@ $(document).ready(function() {
 	}
 
 	function init(){
+		$(".fancybox").fancybox();
 		initBGs();
 		//if(Modernizr.speechinput) initVoice();
 
@@ -171,9 +172,9 @@ $(document).ready(function() {
 		}
 	});
 
-	$('.menu a').each(function(index, el) {
-		$('nav ul').append($(this)[0].outerHTML);
-	});
+	// $('.menu a').each(function(index, el) {
+	// 	$('nav ul').append($(this)[0].outerHTML);
+	// });
 
 	init();
 });
