@@ -14,6 +14,8 @@ $(document).ready(function() {
 	var actual_index = -1;
 	var scroll_speed = 700;
 	var devmode = true;
+	var height = $(window).height();
+	var recognition;
 
 	function c(string){
 		if(devmode) console.log(string);
@@ -25,7 +27,8 @@ $(document).ready(function() {
 
 	function init(){
 		initBGs();
-		initVoice();
+		//if(Modernizr.speechinput) initVoice();
+
 		setTimeout(function() { initScrollPositions(); }, 300);
 
 		initMenu();
@@ -57,14 +60,27 @@ $(document).ready(function() {
 				headline : $(this).find('h1').text()
 			});
 		}).promise().done(function(){
+			$('nav').css('top', $('#us').offset().top + 30 + 43 + 'px');
+			var top = $('#us').offset().top + 30 + 23;
+
+
 			$(window).scroll(function() {
 				window_scroll_position = $(window).scrollTop();
 
 				for (var j = 0; j < scroll_positions.length; j++) {
 					if(window_scroll_position >= scroll_positions[j].offset && window_scroll_position < (scroll_positions[j].offset + scroll_positions[j].height)){
 						actual_index = j;
+						$('nav a').removeClass('active');
+						$('nav a[href="#'+ scroll_positions[j].id +'"]').addClass('active');
 					}
 				}
+
+				if(window_scroll_position > top){
+					$('nav').addClass('sticky');
+				}else{
+					$('nav').removeClass('sticky');
+				}
+
 			});
 
 			$(window).trigger('scroll');
