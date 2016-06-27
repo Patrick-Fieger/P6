@@ -4,15 +4,16 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 
 *{
     box-sizing: border-box;
+    /*word-break: break-all;*/
 }
 
-.trenner{
+/*.trenner{
     -webkit-transform: translate3d(0,0,0);
     -moz-transform: translate3d(0,0,0);
     -ms-transform: translate3d(0,0,0);
     -o-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
-}
+}*/
 
 html{
     -webkit-font-smoothing: antialiased;
@@ -23,6 +24,7 @@ body {
     color: #000000;
     background: #fff;
     padding-bottom: 100px;
+    /*overflow-x: hidden;*/
 }
 
 
@@ -63,8 +65,10 @@ a{
 
 .row{
     width: 82%;
-    max-width: 700px;
-    margin: 0 auto;
+    max-width: 1000px;
+    padding-left: 290px;
+    padding-right: 0px;
+    /*margin: 0 auto;*/
 }
 
 /*-- our cleafix hack -- */

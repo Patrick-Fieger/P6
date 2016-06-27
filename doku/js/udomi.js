@@ -42,6 +42,12 @@ $(document).ready(function() {
 			$(this).css({'background-image':'url(' + $(this).data('bg') + ')'});
 			$(this).append('<div class="icon-resize-full-screen show_preview"></div>')
 		});
+
+		$('.hexa-image').each(function(index, el) {
+			$(this).replaceWith('<div class="hexagon hexagon2"><div class="hexagon-in1"><div style="background-image:url('+ $(this).data('image') +')" class="hexagon-in2"></div></div></div>');
+		});
+
+
 	}
 
 	function initMenu(){
@@ -61,7 +67,7 @@ $(document).ready(function() {
 				headline : $(this).find('h1').text()
 			});
 		}).promise().done(function(){
-			$('nav').css('top', $('#us').offset().top + 30 + 43 + 'px');
+			// $('nav').css('top', $('#us').offset().top + 30 + 43 + 'px');
 			var top = $('#us').offset().top + 30 + 23;
 
 
@@ -148,6 +154,10 @@ $(document).ready(function() {
 
 		if(h.charAt(0) == "#" && h.length > 1){
 			$('html,body').animate({scrollTop : $(h).offset().top + 2}, scroll_speed);
+
+			if($(this).closest('nav').hasClass('show')){
+				$(this).closest('nav').removeClass('show');
+			}
 		}
 	});
 
@@ -164,6 +174,11 @@ $(document).ready(function() {
 		setTimeout(function() {
 			$('.preview').removeAttr('style')
 		}, 500);
+	});
+
+	$(document).on('click', '#menu_mobile', function(event) {
+		event.preventDefault();
+		$('nav').toggleClass('show');
 	});
 
 	$('section .text').each(function(index, el) {
