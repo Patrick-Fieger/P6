@@ -77,6 +77,7 @@ header a{
   	-moz-animation:    updown 2s infinite; /* Fx 5+ */
   	-o-animation:      updown 2s infinite; /* Opera 12+ */
   	animation:         updown 2s infinite;
+    text-decoration: none;
 }
 
 @-webkit-keyframes updown {
