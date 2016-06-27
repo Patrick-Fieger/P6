@@ -42,7 +42,7 @@ nav .menu a{
 .border:nth-child(3),
 .border:nth-child(4){
 	width: 100%;
-	height: 20px;
+	height: 30px;
 	left: 0;
 }
 
@@ -65,6 +65,7 @@ header img {
     top: 50%;
     left: 50%;
     margin: -250px 0 0 -250px;
+    pointer-events: none;
 }
 
 header a{
