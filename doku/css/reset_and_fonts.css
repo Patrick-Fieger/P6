@@ -23,7 +23,7 @@ body {
     font: 16px/20px 'Playfair Display', serif;
     color: #000000;
     background: #fff;
-    padding-bottom: 100px;
+    padding-bottom: 400px;
     /*overflow-x: hidden;*/
 }
 
@@ -41,11 +41,23 @@ h1{
     letter-spacing: -.02em
 }
 
+h3{
+    font-size: 35px;
+    font-weight: 100;
+    margin-top: 60px;
+    line-height: 45px;
+}
+
+h4{
+    font-size: 21px;
+    font-weight: 100;
+}
+
 p,a{
     /*letter-spacing: .01rem;*/
     font-weight: 400;
     font-style: normal;
-    font-size: 21px;
+    font-size: 18px;
     line-height: 1.58;
     letter-spacing: -.003em;
     color:  rgba(0, 0, 0, .8);
@@ -66,7 +78,7 @@ a{
 .row{
     width: 82%;
     max-width: 1000px;
-    padding-left: 290px;
+    padding-left: 340px;
     padding-right: 0px;
     /*margin: 0 auto;*/
 }
@@ -94,15 +106,19 @@ a{
 .col-5{ width: 83.33%; }
 .col-6{ width: 100%;   }
 
+ul{
+    margin: 40px 0;
+}
+
 
 li{
-    background: url(/img/achteck.png) no-repeat 0px 0px transparent;
+    background: url(/img/icons/achteck.png) no-repeat 0px 0px transparent;
     list-style-type: none;
     margin: 0;
-    padding: 0px 0px 1px 24px;
+    padding: 0px 0px 1px 30px;
     vertical-align: middle;
-    background-size: contain;
-    margin-bottom: 10px;
+    background-size: 18px;
+    margin-bottom: 20px;
 }
 
 /*p{
@@ -324,7 +340,7 @@ li{
 }
 
 #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-    background-image: url('/img/fancybox_sprite.png');
+    background-image: url('/img/fancybox/fancybox_sprite.png');
 }
 
 #fancybox-loading {
@@ -342,7 +358,7 @@ li{
 #fancybox-loading div {
     width: 44px;
     height: 44px;
-    background: url('/img/fancybox_loading.gif') center center no-repeat;
+    background: url('/img/fancybox/fancybox_loading.gif') center center no-repeat;
 }
 
 .fancybox-close {
@@ -432,7 +448,7 @@ li{
     overflow: hidden;
     display: none;
     z-index: 8010;
-    background: url('/img/fancybox_overlay.png');
+    background: url('/img/fancybox/fancybox_overlay.png');
 }
 
 .fancybox-overlay-fixed {
@@ -511,12 +527,12 @@ li{
        only screen and (min-device-pixel-ratio: 1.5){
 
     #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-        background-image: url('/img/fancybox_sprite@2x.png');
+        background-image: url('/img/fancybox/fancybox_sprite@2x.png');
         background-size: 44px 152px; /*The size of the normal image, half the size of the hi-res image*/
     }
 
     #fancybox-loading div {
-        background-image: url('/img/fancybox_loading@2x.gif');
+        background-image: url('/img/fancybox/fancybox_loading@2x.gif');
         background-size: 24px 24px; /*The size of the normal image, half the size of the hi-res image*/
     }
 }
