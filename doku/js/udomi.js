@@ -89,7 +89,7 @@ $(document).ready(function() {
 				headline : $(this).find('h1').text()
 			});
 		}).promise().done(function(){
-			var top = $('#us').offset().top + 30 + 23;
+			var top = $('#us').offset().top + 10;
 
 			$(window).scroll(function() {
 				window_scroll_position = $(window).scrollTop();

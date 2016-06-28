@@ -172,7 +172,7 @@ nav ul{
 
 nav.sticky{
   position: fixed;
-  top: 20px;
+  top: 60px;
 }
 
 nav .menu a{
