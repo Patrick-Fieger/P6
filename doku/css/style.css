@@ -240,13 +240,13 @@ section h1:before{
 }
 
 section h1:after{
-	content: "";
-	position: absolute;
-	width: 5em;
-	height: 1px;
-	background-color: #ccc;
-	left: 20px;
-	bottom: -30px;
+  content: "";
+  position: absolute;
+  width: 1em;
+  height: 4px;
+  background-color: #333;
+  left: 5px;
+  bottom: -30px;
 }
 
 .trenner{
