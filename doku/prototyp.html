@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="./js/jquery.js"></script>
+	<script type="text/javascript">
+		var states = {
+			initial:"Initial",
+			table:"Table",
+			lying:"Lying",
+			friends:"Friends"
+		};
+		var currentState = states.initial;
+
+		var change = function(targetState) {
+			if(currentState != targetState) {
+				var newName = "./img/proto/" + currentState + "To" + states[targetState] +".gif";
+				$("#prototyp").attr("src",newName);
+				currentState = targetState;
+			}
+		}
+	</script>
+<style type="text/css">
+	body {
+		background:#efddce;
+		text-align:center;
+	}
+	.desc {
+		margin:300px auto 0;
+		width:800px;
+		background:white;
+		border:17px solid white;
+	}
+	#prototyp {
+		width:800px;
+		height:450px;
+		border:17px solid white;
+		}
+</style>
+</head>
+<body>
+<div class="desc">
+	<a href="#" class="back">Zur&uuml;ck</a>
+	<h2>Sprich dein Bed&uuml;rfnis aus, um den dazu passenden Raum zu erhalten</h2>
+	<h3>z.B. Arbeiten, Liegen, Freunde</h3>
+</div>
+<img src="./img/proto/initial.gif" id="prototyp"><br>
+<a href="#" onClick="change('initial')">initial</a>
+<a href="#" onClick="change('table')">table</a>
+<a href="#" onClick="change('lying')">lying</a>
+<a href="#" onClick="change('friends')">friends</a>
+</div>
+</body>
+</html>
