@@ -209,7 +209,9 @@ nav .menu h2{
   cursor: pointer;
 }
 
-
+section li{
+  list-style: disc !important;
+}
 
 section#inhalt{
 	min-height: 100vh;
@@ -415,8 +417,40 @@ section h1:after{
 
 }
 
+@media all {
+  .page-break { display: none; }
+}
 
 @media print {
+  .hide_on_print{
+    display: none;
+  }
+
+  .page-break {
+    display: block;
+    page-break-before: always;
+  }
+
+  nav:before{
+    font-weight: 700;
+    font-size: 34px;
+    content: "Inhaltsverzeichnis";
+    top: -40px;
+    position: relative;
+    left: 30px
+  }
+  nav{
+    position: inherit;
+    font-size: 20px;
+    margin-top: 50px;
+    float: left;
+  }
+
+  nav .menu a{
+    font-size: 30px !important;
+    font-style: normal !important;
+  }
+
   .row{
     padding: 0 30px;
   }
@@ -425,8 +459,12 @@ section h1:after{
     opacity: 0;
   }
 
-  nav,
   .scrolldown{
     display: none;
   }
+
+  section{
+    margin-bottom: 30px;
+  }
+
 }
