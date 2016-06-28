@@ -10,33 +10,43 @@
 			lying:"Lying",
 			friends:"Friends"
 		};
-		var currentState = states.initial;
+		var currentState = "initial";
 
 		var change = function(targetState) {
 			if(currentState != targetState) {
 				console.log(currentState+"=>"+targetState);
-				var newName = "./img/proto/" + currentState + "To" + states[targetState] +".mp4";
+				var newName = "./img/proto/" + states[currentState] + "To" + states[targetState] +".mp4";
 				$("#prototyp > source").attr("src",newName);
 				$("#prototyp").load();
 				currentState = targetState;
+				$(".active").removeClass("active");
+				$("."+currentState).addClass("active");
+				$("#prototyp").on("load", function() { 
+					$("#prototyp").css("background","url('./img/proto/"+states[currentState]+".jpg");
+				});
+				
+				/*$("#prototyp").on('ended', function() { 
+					console.log("ended");
+					this.currentTime = 1; 
+				}, false);*/
 			}
 		}
 
-		/*function initVoice(){
+		function initVoice(){
 			var recognition = new webkitSpeechRecognition();
 			recognition.continuous = true;
 			recognition.interimResults = true;
 			var woerter = [
-				['inhalt','#inhalt'],
-				['über uns','#us'],
-				['management','#management'],
-				['space','#space']
+				['leer','initial'],
+				['arbeiten','table'],
+				['liegen','lying'],
+				['freunde','friends']
 			];
 
 			recognition.start();
 
-			recognition.onstart = function() { c('start')}
-			recognition.onerror = function(event) {c(event) }
+			//recognition.onstart = function() { console.log('start')}
+			//recognition.onerror = function(event) {console.log(event) }
 			recognition.onresult = function(event) {
 				var wort = event.results[0][0].transcript.toLowerCase();
 				for (var i = event.resultIndex; i < event.results.length; ++i) {
@@ -44,21 +54,9 @@
 						for (var k = 0; k < woerter.length; k++) {
 							var index = woerter[k][0].indexOf(wort);
 
-							if(wort == "weiter" || wort == "walter" || wort == "weißer"){
-								$('html,body').animate({scrollTop : scroll_positions[actual_index+1].offset + 2}, scroll_speed);
-							}else if(wort == "zurück"){
-								if(actual_index == 0){
-									$('html,body').animate({scrollTop : scroll_positions[actual_index].offset + 2}, scroll_speed);
-								}else{
-									$('html,body').animate({scrollTop : scroll_positions[actual_index-1].offset + 2}, scroll_speed);
-								}
-							}else if(index > -1){
-								$('html,body').animate({scrollTop : $(woerter[k][1]).offset().top + 2}, scroll_speed);
+							if(index > -1){
+								change(woerter[k][1]);
 							}
-
-							c(index);
-							c(wort);
-							c(actual_index);
 						}
 					}
 				}
@@ -66,14 +64,16 @@
 				recognition.stop();
 			}
 			recognition.onend = function() {
-				c('ende!')
+				console.log('ende!')
 				recognition.start();
 			}
-		}*/
+		}
 
-	</script>
-	<link rel="stylesheet" type="text/css" href="./css/reset_and_fonts.css">
-	<style type="text/css">
+		initVoice();
+
+	</script>"stylesheet" type="text/css" href="./css/reset_and_fonts.css">
+	<style type
+	<link rel=="text/css">
 	body {
 		background:#efddce;
 	}
@@ -92,6 +92,11 @@
 	strong {
 		font-family: 'Josefin Sans', sans-serif;
 	}
+
+	a.active {
+		text-decoration: none;
+	}
+
 	#prototyp {
 		display: block;
 		width:800px;
@@ -99,23 +104,18 @@
 		margin:0 auto;
 		border:17px solid white;
 		box-sizing: content-box;
+		background:url("./img/proto/Initial.jpg");
 	}
 	</style>
 </head>
 <body>
 <div class="desc">
-	<a href="#" class="back">Zur&uuml;ck zur Dokumentation</a>
+	<a href="/" class="back">Zur&uuml;ck zur Dokumentation</a>
 	<h2>Sprich dein Bed&uuml;rfnis aus, um den dazu passenden Raum zu erhalten</h2>
-	<strong>z.B. Arbeiten, Liegen, Freunde</strong>
+	<strong>z.B. <a href="#" onClick="change('table'); return false;" class="table">Arbeiten</a>, <a href="#" onClick="change('lying'); return false;" class="lying">Liegen</a>, <a href="#" onClick="change('friends'); return false;" class="friends">Freunde</a> oder einfach <a href="#" onClick="change('initial'); return false;" class="initial active">leer</a></strong>
 </div>
 <video autoplay id="prototyp">
-	<source src="./img/proto/initial.mp4" type="video/mp4">
+	<source src="./img/proto/Initial.jpg" type="video/mp4">
 </video>
-<br>
-<a href="#" onClick="change('initial')">initial</a>
-<a href="#" onClick="change('table')">table</a>
-<a href="#" onClick="change('lying')">lying</a>
-<a href="#" onClick="change('friends')">friends</a>
-</div>
 </body>
 </html>
