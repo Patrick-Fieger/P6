@@ -481,4 +481,12 @@ section h1:after{
     margin-bottom: 30px;
   }
 
+  /*section h1:before{
+    top: 0px
+  }*/
+
+  #interaktion .fullwidth{
+    max-width: 75%
+  }
+
 }

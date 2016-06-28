@@ -70,8 +70,10 @@ $(document).ready(function() {
 					var a1 = authors[parseInt(d)];
 					author = "- " + a1;
 				}
-
+				console.log(typeof d + ' ' + d)
 				$(this).attr('data-author',author);
+			}else{
+				$(this).removeAttr('data-author');
 			}
 
 
