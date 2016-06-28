@@ -159,7 +159,7 @@ header a{
 nav{
   padding-top: 20px;
   position: absolute;
-  left: 5px;
+  left: 50px;
   z-index: 10;
   background: rgba(255,255,255,0.8);
   color: #555;
@@ -209,10 +209,6 @@ nav .menu h2{
   cursor: pointer;
 }
 
-section li{
-  list-style: disc !important;
-}
-
 section#inhalt{
 	min-height: 100vh;
 }
@@ -225,11 +221,22 @@ section{
 section h1{
 	font-size: 3.5em;
   /*font-size: 4em;*/
-	margin-bottom: 2em;
+	margin-bottom: 3em;
 	position: relative;
   line-height: 70px;
   letter-spacing: 5px;
 	/*text-transform: uppercase;*/
+}
+
+section h1:before{
+  content: attr(data-author);
+  position: absolute;
+  font-size: 18px;
+  font-weight: 100;
+  right: 0;
+  letter-spacing: 0;
+  font-style: italic;
+  top: 130px;
 }
 
 section h1:after{
@@ -361,7 +368,9 @@ section h1:after{
 }
 
 
-@media only screen and (max-width: 786px) {
+
+/*@media only screen and (max-width: 786px) {*/
+@media only screen and (max-width: 940px) {
 
   canvas{
     opacity: 0;
@@ -408,10 +417,11 @@ section h1:after{
     background: rgba(255,255,255,1);
     top: -600px !important;
     position: fixed !important;
+    left: 5px;
   }
 
   nav.show{
-    top: 20px !important;
+    top: 10px !important;
     box-shadow: 0 1px 1px 0 rgba(130,145,153,0.5);
   }
 
@@ -422,6 +432,10 @@ section h1:after{
 }
 
 @media print {
+  section li{
+    list-style: disc !important;
+  }
+
   .hide_on_print{
     display: none;
   }

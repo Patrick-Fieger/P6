@@ -5,6 +5,13 @@ $(document).ready(function() {
 	// window.onbeforeunload = function(){
 	// 	window.scrollTo(0,0);
 	// }
+	//
+	var authors = ["Patrick Fieger",
+		"Tim J. Peters",
+		"Anne Pischulski",
+		"Volker Matthes",
+		"Christian Tielmann"
+	]
 	var scroll_positions = [];
 	var window_scroll_position = 0;
 	var actual_index = -1;
@@ -45,6 +52,31 @@ $(document).ready(function() {
 
 			$('.menu').append('<h2><a href="#'+$(this).closest('section').attr('id')+'">'+ leading_zero + '' +(index+1) + '. ' +  $(this).text()) + '</a></h2>';
 			$(this).text(text);
+
+			var d = $(this).data('author');
+			var double = d.toString().indexOf('&') > -1 ? true : false;
+			var author = "";
+
+			if(d !== "none"){
+				if(double){
+					var devideand = d.split('&');
+
+					var a1 = authors[parseInt(devideand[0])];
+					var a2 = authors[parseInt(devideand[1])];
+
+					author = "- " + a1 + " und " + a2;
+
+				}else{
+					var a1 = authors[parseInt(d)];
+					author = "- " + a1;
+				}
+
+				$(this).attr('data-author',author);
+			}
+
+
+		}).promise().done(function(){
+			$('.menu').append('<h2><a href="/prototyp.html">Ausprobieren!</a></h2>')
 		});
 	}
 
