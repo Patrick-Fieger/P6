@@ -6,7 +6,6 @@ blockquote{
     line-height: 1.48;
     letter-spacing: -.014em;
     color: rgba(0,0,0,.6);
-    /*border: none;*/
     border-left: 4px solid #ccc;
     padding: 0;
     padding-left: 50px;
@@ -361,6 +360,23 @@ section h1:after{
 
 
 @media only screen and (max-width: 786px) {
+
+  canvas{
+    opacity: 0;
+  }
+
+  .border:nth-child(1),
+  .border:nth-child(2){
+    width: 10px;
+  }
+
+  .border:nth-child(3),
+  .border:nth-child(4){
+    height: 10px;
+  }
+
+  .border{}
+
   #menu_mobile{
     display: block;
   }

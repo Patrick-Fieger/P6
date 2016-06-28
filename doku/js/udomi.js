@@ -152,7 +152,7 @@ $(document).ready(function() {
 		setTimeout(function() { $('.preview').removeAttr('style') }, 500);
 	});
 
-	$(document).on('click', '#menu_mobile', function(event) {
+	$(document).on('click touchstart', '#menu_mobile', function(event) {
 		event.preventDefault();
 		$('nav').toggleClass('show');
 	});
