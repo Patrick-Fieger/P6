@@ -14,37 +14,104 @@
 
 		var change = function(targetState) {
 			if(currentState != targetState) {
-				var newName = "./img/proto/" + currentState + "To" + states[targetState] +".gif";
-				$("#prototyp").attr("src",newName);
+				console.log(currentState+"=>"+targetState);
+				var newName = "./img/proto/" + currentState + "To" + states[targetState] +".mp4";
+				$("#prototyp > source").attr("src",newName);
+				$("#prototyp").load();
 				currentState = targetState;
 			}
 		}
+
+		/*function initVoice(){
+			var recognition = new webkitSpeechRecognition();
+			recognition.continuous = true;
+			recognition.interimResults = true;
+			var woerter = [
+				['inhalt','#inhalt'],
+				['über uns','#us'],
+				['management','#management'],
+				['space','#space']
+			];
+
+			recognition.start();
+
+			recognition.onstart = function() { c('start')}
+			recognition.onerror = function(event) {c(event) }
+			recognition.onresult = function(event) {
+				var wort = event.results[0][0].transcript.toLowerCase();
+				for (var i = event.resultIndex; i < event.results.length; ++i) {
+					if(event.results[i].isFinal){
+						for (var k = 0; k < woerter.length; k++) {
+							var index = woerter[k][0].indexOf(wort);
+
+							if(wort == "weiter" || wort == "walter" || wort == "weißer"){
+								$('html,body').animate({scrollTop : scroll_positions[actual_index+1].offset + 2}, scroll_speed);
+							}else if(wort == "zurück"){
+								if(actual_index == 0){
+									$('html,body').animate({scrollTop : scroll_positions[actual_index].offset + 2}, scroll_speed);
+								}else{
+									$('html,body').animate({scrollTop : scroll_positions[actual_index-1].offset + 2}, scroll_speed);
+								}
+							}else if(index > -1){
+								$('html,body').animate({scrollTop : $(woerter[k][1]).offset().top + 2}, scroll_speed);
+							}
+
+							c(index);
+							c(wort);
+							c(actual_index);
+						}
+					}
+				}
+
+				recognition.stop();
+			}
+			recognition.onend = function() {
+				c('ende!')
+				recognition.start();
+			}
+		}*/
+
 	</script>
-<style type="text/css">
+	<link rel="stylesheet" type="text/css" href="./css/reset_and_fonts.css">
+	<style type="text/css">
 	body {
 		background:#efddce;
-		text-align:center;
 	}
 	.desc {
-		margin:300px auto 0;
+		margin:150px auto 0;
 		width:800px;
 		background:white;
 		border:17px solid white;
+		box-sizing:content-box;
+	}
+
+	h2 {
+		font-size:24px;
+	}
+
+	strong {
+		font-family: 'Josefin Sans', sans-serif;
 	}
 	#prototyp {
+		display: block;
 		width:800px;
 		height:450px;
+		margin:0 auto;
 		border:17px solid white;
-		}
-</style>
+		box-sizing: content-box;
+	}
+	</style>
 </head>
 <body>
 <div class="desc">
-	<a href="#" class="back">Zur&uuml;ck</a>
+	<a href="#" class="back">Zur&uuml;ck zur Dokumentation</a>
 	<h2>Sprich dein Bed&uuml;rfnis aus, um den dazu passenden Raum zu erhalten</h2>
-	<h3>z.B. Arbeiten, Liegen, Freunde</h3>
+	<strong>z.B. Arbeiten, Liegen, Freunde</strong>
 </div>
-<img src="./img/proto/initial.gif" id="prototyp"><br>
+<video autoplay id="prototyp">
+	<source src="./img/proto/initial.mp4" type="video/mp4">
+</video>
+<br>
 <a href="#" onClick="change('initial')">initial</a>
 <a href="#" onClick="change('table')">table</a>
 <a href="#" onClick="change('lying')">lying</a>
