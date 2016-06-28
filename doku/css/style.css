@@ -414,3 +414,19 @@ section h1:after{
   }
 
 }
+
+
+@media print {
+  .row{
+    padding: 0 30px;
+  }
+
+  canvas{
+    opacity: 0;
+  }
+
+  nav,
+  .scrolldown{
+    display: none;
+  }
+}
