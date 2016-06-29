@@ -112,7 +112,7 @@ ul{
 
 
 li{
-    background: url(/img/icons/achteck.png) no-repeat 0px 0px transparent;
+    background: url("../img/icons/achteck.png") no-repeat 0px 0px transparent;
     list-style-type: none;
     margin: 0;
     padding: 0px 0px 1px 30px;
@@ -129,11 +129,11 @@ li{
 
 @font-face {
     font-family: 'doku';
-    src:    url('/fonts/doku.eot?s99odt');
-    src:    url('/fonts/doku.eot?s99odt#iefix') format('embedded-opentype'),
-        url('/fonts/doku.ttf?s99odt') format('truetype'),
-        url('/fonts/doku.woff?s99odt') format('woff'),
-        url('/fonts/doku.svg?s99odt#doku') format('svg');
+    src:    url('../fonts/doku.eot?s99odt');
+    src:    url('../fonts/doku.eot?s99odt#iefix') format('embedded-opentype'),
+        url('../fonts/doku.ttf?s99odt') format('truetype'),
+        url('../fonts/doku.woff?s99odt') format('woff'),
+        url('../fonts/doku.svg?s99odt#doku') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -340,7 +340,7 @@ li{
 }
 
 #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-    background-image: url('/img/fancybox/fancybox_sprite.png');
+    background-image: url('../img/fancybox/fancybox_sprite.png');
 }
 
 #fancybox-loading {
@@ -358,7 +358,7 @@ li{
 #fancybox-loading div {
     width: 44px;
     height: 44px;
-    background: url('/img/fancybox/fancybox_loading.gif') center center no-repeat;
+    background: url('../img/fancybox/fancybox_loading.gif') center center no-repeat;
 }
 
 .fancybox-close {
@@ -448,7 +448,7 @@ li{
     overflow: hidden;
     display: none;
     z-index: 8010;
-    background: url('/img/fancybox/fancybox_overlay.png');
+    background: url('../img/fancybox/fancybox_overlay.png');
 }
 
 .fancybox-overlay-fixed {
@@ -527,12 +527,12 @@ li{
        only screen and (min-device-pixel-ratio: 1.5){
 
     #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-        background-image: url('/img/fancybox/fancybox_sprite@2x.png');
+        background-image: url('../img/fancybox/fancybox_sprite@2x.png');
         background-size: 44px 152px; /*The size of the normal image, half the size of the hi-res image*/
     }
 
     #fancybox-loading div {
-        background-image: url('/img/fancybox/fancybox_loading@2x.gif');
+        background-image: url('../img/fancybox/fancybox_loading@2x.gif');
         background-size: 24px 24px; /*The size of the normal image, half the size of the hi-res image*/
     }
 }

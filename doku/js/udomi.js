@@ -78,7 +78,7 @@ $(document).ready(function() {
 
 
 		}).promise().done(function(){
-			$('.menu').append('<h2><a href="/prototyp.html">Ausprobieren!</a></h2>')
+			$('.menu').append('<h2><a href="./prototyp.html">Ausprobieren!</a></h2>')
 		});
 	}
 
