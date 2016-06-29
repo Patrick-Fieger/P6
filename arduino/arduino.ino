@@ -38,7 +38,7 @@ void loop() {
 
 
 	if(go){
-    edit();
+    //edit();
 
 		client = server.accept();
 
