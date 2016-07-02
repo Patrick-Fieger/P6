@@ -5,14 +5,14 @@
 // situations > furnitures > levels > pin, angle
 int target_pos[3][2][3][2]={
   { // Stuhl und tisch
-   {{3,0},{2,180},{0,0}},
-   {{0,90},{1,90}}
+   {{3,1},{2,180},{1,1}},
+   {{1,90},{2,90}}
   },
   { // liege
-    {{0,120},{1,10}}
+    {{1,120},{2,10}}
   },
  { // Gäste
-    {{0,180},{1,180}}
+    {{1,180},{2,180}}
  }
 };
 
@@ -36,7 +36,8 @@ bool isRunning = false;
 bool isAllFurnitureSet = false;
 float difference;
 int movementDirection,
-  maxAmountLvls = 3;
+  maxAmountLvls = 3,
+  maxAmountOfPieces = 2;
 
 bool devmode = true;
 int how_many_seconds_to_build = 2 * 1000;
@@ -61,12 +62,11 @@ void setPositions(String situationID_string){
 	isRunning = true; 
   for(int currentLvl = 0;currentLvl < maxAmountLvls;currentLvl++) // each level
   {
-    isAllFurnitureSet = true; // nur ne Behauptung zum widerlegen
     do { // until all furniture is set in this level
-      for(int piece=0;piece<sizeof(target_pos[situationID]);piece++) // each furniture
+      isAllFurnitureSet = true; // nur ne Behauptung zum widerlegen
+      for(int piece=0;piece<maxAmountOfPieces;piece++) // each furniture
       {
-        Serial.println(sizeof(target_pos[situationID][piece]));
-        if(sizeof(target_pos[situationID][piece]) > currentLvl)
+        if(target_pos[situationID][piece][0][0] != 0)
         {
           difference = target_pos[situationID][piece][currentLvl][1] - current_pos[situationID][piece][currentLvl][1];
           if(difference != 0)
@@ -75,12 +75,11 @@ void setPositions(String situationID_string){
             movementDirection = difference/abs(difference);
             // move one step closer to target
             current_pos[situationID][piece][currentLvl][1] += movementDirection;
-            //if(piece == 0 && currentLvl == 0)
-            //  Serial.println(String(current_pos[situationID][piece][currentLvl][0]) + " => " + current_pos[situationID][piece][currentLvl][1] + "(" + difference + ")");
+            Serial.println(String(current_pos[situationID][piece][currentLvl][0]) + " => " + current_pos[situationID][piece][currentLvl][1] + "(" + difference + ")");
           }
         }
       }
-      delay(150);
+      delay(5);
     } while(isAllFurnitureSet == false);
   }
 
