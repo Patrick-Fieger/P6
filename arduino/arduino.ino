@@ -7,6 +7,9 @@
 #define SERVOMIN  150 // this is the 'minimum' pulse length count (out of 4096)
 #define SERVOMAX  650 // this is the 'maximum' pulse length count (out of 4096)
 
+int allLEDsPin = 7,
+  tableLEDsPin = 8,
+  touchPin = 9;
 
 // situations > furnitures > levels > pin, angle
 int target_pos[3][3][3][2]={
@@ -137,5 +140,37 @@ void resetPositions() {
   isRunning = false;
 }
 
+// Initialize Edit Mode
+void initEditmode() {
+  //turn on all LEDs
+  digitalWrite(allLEDsPin, HIGH);
+  digitalWrite(tableLEDsPin, HIGH);
+  
+  while(touchPin != HIGH) {
+    delay(5);
+  }
+  startEditmode();
+}
 
+void startEditmode() {
+  digitalWrite(allLEDsPin, LOW); // turn of other LEDs than table
+  for(n=0;n<maxAmountLvls;n++) 
+  {
+    pwm.setPWM(initial_pos[1][n][0],0,0); // free all table servos 
+  }
+
+  while(touchPin == HIGH) {
+    delay(5);
+  }
+  endEditmode();
+}
+
+void endEditmode() {
+  digitalWrite(tableLEDsPin, LOW);
+  for(n=0;n<maxAmountLvls;n++) 
+  {
+    target_pos[0][1][n][1] = map(analogRead(readPins[n]),READMIN,READMAX,0,180) // update situation data
+    pwm.setPWM(initial_pos[1][n][0],0,map(target_pos[0][1][n][1],0,180,SERVOMIN,SERVOMAX)); // free all table servos 
+  }    
+}
 
