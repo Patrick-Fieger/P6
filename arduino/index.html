@@ -56,63 +56,75 @@
 <div></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="./modernizr.js"></script>
 <script>
 	$(document).ready(function() {
-		var recognition = new webkitSpeechRecognition();
-		recognition.continuous = true;
-		recognition.interimResults = true;
-		var woerter = ['schlafen','sitzen','tisch'];
-		var system_said = false;
+		if(Modernizr.speechrecognition){
+			initSpeech();
+		}else{
+			$('ul,span,p,div').hide();
+			$('body').append('<h1>Spracheingabe nicht möglich!!!</h1>');
+		}
 
-		$('p').append(' ' + woerter.toString());
+		function initSpeech(){
 
-		recognition.start();
+			var recognition = new webkitSpeechRecognition();
+			recognition.continuous = true;
+			recognition.interimResults = true;
+			var woerter = ['schlafen','sitzen','tisch'];
+			var system_said = false;
 
-		recognition.onstart = function() { console.log('start')}
-		recognition.onerror = function(event) {console.log(event) }
-		recognition.onresult = function(event) {
-			var wort = event.results[0][0].transcript.toLowerCase();
-			for (var i = event.resultIndex; i < event.results.length; ++i) {
-				if(event.results[i].isFinal){
-					var index = woerter.indexOf(wort);
+			$('p').append(' ' + woerter.toString());
 
-					if(!system_said && wort == "system"){
-						system_said = !system_said;
-						$('.red').addClass('active');
-					}else if(system_said && wort !== "system"){
-						if(index > -1){
+			recognition.start();
+
+			recognition.onstart = function() { console.log('start')}
+			recognition.onerror = function(event) {console.log(event) }
+			recognition.onresult = function(event) {
+				var wort = event.results[0][0].transcript.toLowerCase();
+				for (var i = event.resultIndex; i < event.results.length; ++i) {
+					if(event.results[i].isFinal){
+						console.log(wort);
+
+						var index = woerter.indexOf(wort);
+
+						if(!system_said && wort == "system"){
 							system_said = !system_said;
-							$('.red').removeClass('active');
-							sendWort(wort,index);
+							$('.red').addClass('active');
+						}else if(system_said && wort !== "system"){
+							if(index > -1){
+								system_said = !system_said;
+								$('.red').removeClass('active');
+								sendWort(wort,index);
+							}
 						}
 					}
 				}
+
+				recognition.stop();
+			}
+			recognition.onend = function() {
+				console.log('ende!')
+				recognition.start();
 			}
 
-			recognition.stop();
-		}
-		recognition.onend = function() {
-			console.log('ende!')
-			recognition.start();
-		}
-
-		$(document).on('click', 'a', function(event) {
-			event.preventDefault();
-			sendWort($(this).text(),$(this).closest('li').index())
-		});
-
-		function sendWort(wort,index){
-			$('div').append('<p>' + wort + '</p>');
-			$.ajax({
-				url: "https://arduino.local/arduino/" + index,
-				type: 'POST',
-				data: {data : wort},
-				success : function(data){
-					console.log(data);
-				}
+			$(document).on('click', 'a', function(event) {
+				event.preventDefault();
+				sendWort($(this).text(),$(this).closest('li').index())
 			});
-		}
 
+			function sendWort(wort,index){
+				$('div').append('<p>' + wort + '</p>');
+				$.ajax({
+					url: "https://arduino.local/arduino/" + index,
+					type: 'POST',
+					data: {data : wort},
+					success : function(data){
+						console.log(data);
+					}
+				});
+			}
+		}
 	});
 </script>
 

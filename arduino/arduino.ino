@@ -1,3 +1,9 @@
+#include <Wire.h>
+#include <Adafruit_PWMServoDriver.h>
+#include <Bridge.h>
+#include <YunServer.h>
+#include <YunClient.h>
+
 #define SERVOMIN  150 // this is the 'minimum' pulse length count (out of 4096)
 #define SERVOMAX  650 // this is the 'maximum' pulse length count (out of 4096)
 
@@ -5,27 +11,27 @@
 // situations > furnitures > levels > pin, angle
 int target_pos[3][3][3][2]={
   { // Stuhl und tisch
-   {{1,180},{2,100},{3,90}}, // S
-   {{4,180},{5,150},{6,170}}, // T
-   {{8,0},{9,3}}, // STB
-  },
+   {{1,100},{2,0},{3,180}}, // S
+   {{4,135},{5,45},{6,35}}, // T
+   {{8,90},{9,175}} // STB
+   },
   { // liege
-   {{1,10},{2,90},{3,90}}, // S
+   {{1,160},{2,60},{3,60}}, // S
    {{4,90},{5,90},{6,170}}, // T
-   {{8,90},{9,100}}, // STB
+   {{8,90},{9,175}} // STB
   },
  { // Gäste
    {{1,10},{2,90},{3,90}}, // S
    {{4,90},{5,90},{6,170}}, // T
-   {{8,90},{9,100}}, // STB
-  },
+   {{8,15},{9,10}} // STB
+  }
 };
 
 int current_pos[3][3][2],
   initial_pos[3][3][2]={
    {{1,10},{2,90},{3,90}}, // S
    {{4,90},{5,90},{6,170}}, // T
-   {{8,90},{9,100}}, // STB
+   {{8,90},{9,175}}, // STB
 };
 
 int current_state = 0;
@@ -39,12 +45,26 @@ int movementDirection,
 bool devmode = true;
 int how_many_seconds_to_build = 2 * 1000;
 
+YunServer server;
+Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
+YunClient client;
+
+
 void setup() {
 //  current_pos = initial_pos;
   memcpy(current_pos,initial_pos,sizeof(initial_pos));
+  pwm.begin();
+  pwm.setPWMFreq(60);
+  Serial.println("Resetting now!");
+  resetPositions();
 
-  setPositions("0");
+  delay(2000);
+  Serial.println("Postioning now!");
+  setPositions("2");
   Serial.println("done");
+
+  delay(5000);
+  Serial.println("Resetting now!");
   resetPositions();
 }
 
@@ -58,8 +78,8 @@ void loop() {
  */
 void setPositions(String situationID_string){
 	int situationID = situationID_string.toInt();
-	isRunning = true; 
-  for(int currentLvl = 0;currentLvl < maxAmountLvls;currentLvl++) // each level
+	isRunning = true;
+  for(int currentLvl = maxAmountLvls-1;currentLvl >= 0;currentLvl--) // each level
   {
     do { // until all furniture is set in this level
       isAllFurnitureSet = true; // nur ne Behauptung zum widerlegen
@@ -74,11 +94,14 @@ void setPositions(String situationID_string){
             movementDirection = difference/abs(difference);
             // move one step closer to target
             current_pos[piece][currentLvl][1] += movementDirection;
-              Serial.println(String(current_pos[piece][currentLvl][0]) + " => " + current_pos[piece][currentLvl][1] + "(" + difference + ")");
+              //Serial.println(String(current_pos[piece][currentLvl][0]) + " => " + current_pos[piece][currentLvl][1] + "(" + difference + ")");
+
+            pwm.setPWM(current_pos[piece][currentLvl][0],0,map(current_pos[piece][currentLvl][1],0,180,SERVOMIN,SERVOMAX));
+
           }
         }
       }
-      delay(5);
+      delay(15);
     } while(isAllFurnitureSet == false);
   }
 
@@ -86,8 +109,10 @@ void setPositions(String situationID_string){
 }
 
 void resetPositions() {
-  isRunning = true; 
-  for(int currentLvl = maxAmountLvls-1;currentLvl >= 0;currentLvl--) // each level
+  Serial.println("RESETTING");
+
+  isRunning = true;
+  for(int currentLvl = 0;currentLvl < maxAmountLvls;currentLvl++)
   {
     do { // until all furniture is set in this level
       isAllFurnitureSet = true; // nur ne Behauptung zum widerlegen
@@ -101,9 +126,11 @@ void resetPositions() {
             // move one step closer to target
             current_pos[piece][currentLvl][1] += movementDirection;
             Serial.println(String(current_pos[piece][currentLvl][0]) + " => " + current_pos[piece][currentLvl][1] + "(" + difference + ")");
+
+            pwm.setPWM(current_pos[piece][currentLvl][0],0,map(current_pos[piece][currentLvl][1],0,180,SERVOMIN,SERVOMAX));
           }
       }
-      delay(5);
+      delay(15);
     } while(isAllFurnitureSet == false);
   }
 
