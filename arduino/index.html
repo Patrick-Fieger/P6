@@ -49,13 +49,15 @@
 	<li><a href="#" title="">Pos 0</a></li>
 	<li><a href="#" title="">Pos 1</a></li>
 	<li><a href="#" title="">Pos 2</a></li>
+	<li><a href="#" title="">Pos 3</a></li>
+	<li><a href="#" title="">Pos 4</a></li>
 </ul>
 
 <span class="red"></span>
 <p>Mögliche Wörter sind:</p>
 <div></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="./jquery.js"></script>
 <script src="./modernizr.js"></script>
 <script>
 	$(document).ready(function() {
@@ -71,7 +73,8 @@
 			var recognition = new webkitSpeechRecognition();
 			recognition.continuous = true;
 			recognition.interimResults = true;
-			var woerter = ['schlafen','sitzen','tisch'];
+			var woerter = ['tisch','liege','stuhl','verändern','zurück'];
+			var udomi_woerter = ["udomi","sodomi","kurdo me","und domi","und dumm","otto","und omi","utomi","domi","tommy","udo","domis","tommy"];
 			var system_said = false;
 
 			$('p').append(' ' + woerter.toString());
@@ -88,7 +91,7 @@
 
 						var index = woerter.indexOf(wort);
 
-						if(!system_said && wort == "system"){
+						if(!system_said && udomi_woerter.indexOf(wort) > -1){
 							system_said = !system_said;
 							$('.red').addClass('active');
 						}else if(system_said && wort !== "system"){
@@ -114,11 +117,23 @@
 			});
 
 			function sendWort(wort,index){
+				var sendwort;
+
+				if(index == 3){
+					sendwort = "verändern";
+				}else if(index == 4){
+					sendwort = "leer";
+				}else{
+					sendwort = wort;
+				}
+
+				// alert(sendwort);
+
 				$('div').append('<p>' + wort + '</p>');
 				$.ajax({
 					url: "https://arduino.local/arduino/" + index,
 					type: 'POST',
-					data: {data : wort},
+					data: {data : sendwort},
 					success : function(data){
 						console.log(data);
 					}
