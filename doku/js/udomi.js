@@ -18,7 +18,8 @@ $(document).ready(function() {
 	var scroll_speed = 700;
 	var devmode = true;
 	var height = $(window).height();
-	var recognition;
+	var recognition,
+		showAuthor = false; // should the text authors be displayed?
 
 	function c(string) {if(devmode) console.log(string);}
 	function a(string) {if(devmode) alert(string);}
@@ -57,7 +58,7 @@ $(document).ready(function() {
 			var double = d.toString().indexOf('&') > -1 ? true : false;
 			var author = "";
 
-			if(d !== "none"){
+			if(showAuthor && d !== "none"){
 				if(double){
 					var devideand = d.split('&');
 
